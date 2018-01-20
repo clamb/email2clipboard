@@ -1,0 +1,34 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: inherit;
+}
+
+.hidden {
+  display: none;
+}
+
+.license {
+  font-size: 8px;
+  color: lightgray;
+}
+
+body {
+  padding: 5px;
+  width: 200px;
+}
+
+#popup-content {
+  display: grid;
+  grid-gap: 0.2em;
+  grid-template-columns: 50% 50%;
+}
+
+.control button {
+  width: 100%;
+  text-align: center;
+  margin: 0.2em 0;
+  height: 4em;
+}
