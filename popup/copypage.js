@@ -1,4 +1,6 @@
 function listenForClicks() {
+
+
   const copyStudentsRow = tabs => {
     browser.tabs.sendMessage(tabs[0].id, {
       command: "copyStudentsRow"
@@ -27,7 +29,6 @@ function listenForClicks() {
     console.error(`Ooops, une erreur est survenue: ${error}`);
   };
 
-  console.log("listenForClicks");
   document.querySelector("button#students-row").addEventListener("click", () => {
     browser.tabs
       .query({ active: true, currentWindow: true })
@@ -54,13 +55,36 @@ function listenForClicks() {
   });
 }
 
+
 function reportExecuteScriptError(error) {
   document.querySelector("#popup-content").classList.add("hidden");
   document.querySelector("#error-content").classList.remove("hidden");
   console.error(`Failed to execute Email2Clipboard: ${error.message}`);
 }
 
-browser.tabs
-  .executeScript({ file: "/content_scripts/copy.js" })
-  .then(listenForClicks)
-  .catch(reportExecuteScriptError);
+
+const manifest = browser.runtime.getManifest();
+document.querySelector("#version").textContent = `${manifest.name}, v${manifest.version}`;
+
+const okelt = document.querySelector("#ok");
+const notokelt = document.querySelector("#notok");
+
+chrome.tabs.query({
+  active: true,
+  lastFocusedWindow: true
+}, tabs => {
+  const url = tabs[0].url;
+  if (url.startsWith("https://intranet.cpnv.ch/classes/")) {
+    notokelt.classList.add('hidden');
+    okelt.classList.remove('hidden');
+
+    browser.tabs
+      .executeScript({ file: "/content_scripts/copy.js" })
+      .then(listenForClicks)
+      .catch(reportExecuteScriptError);
+
+  } else {
+    okelt.classList.add('hidden');
+    notokelt.classList.remove('hidden');
+  }
+});

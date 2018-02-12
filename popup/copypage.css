@@ -15,6 +15,10 @@ html {
   color: lightgray;
 }
 
+#version {
+  font-size: 9px;
+}
+
 body {
   padding: 5px;
   width: 200px;
@@ -31,4 +35,8 @@ body {
   text-align: center;
   margin: 0.2em 0;
   height: 4em;
+}
+
+hr {
+  width: 100%;
 }
