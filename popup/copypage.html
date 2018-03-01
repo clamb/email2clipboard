@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Email2Clipboard</title>
   <link rel="stylesheet" href="copypage.css">
 </head>
+
 <body>
+
+  <!-- TODO: https://github.com/mdn/webextensions-examples/blob/master/latest-download/popup/latest_download.html -->
+
   <div id="ok" class="hidden">
     <p>
-      Choisissez les adresses que vous désirez copier
-      dans le presse-papier.
+      Choisissez les adresses que vous désirez copier dans le presse-papier.
     </p>
     <div id="popup-content">
       <div class="control">
@@ -32,16 +36,19 @@
     </div>
   </div>
   <div id="notok" class="hidden">
-    Cette extension ne fonctionne que sur la vue classe de l'Intranet.
+    Cette extension ne fonctionne que sur la vue classes de l'Intranet<a id="urlelt" href="#"></a>.
   </div>
   <hr>
   <div id="version"></div>
   <div class="license">
-    Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>
-    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-    is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
-    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+    Icons made by
+    <a href="http://www.freepik.com" title="Freepik">Freepik</a>
+    from
+    <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    is licensed by
+    <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
   </div>
   <script src="copypage.js" charset="utf-8"></script>
 </body>
+
 </html>

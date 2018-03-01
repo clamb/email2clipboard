@@ -31,25 +31,37 @@ function listenForClicks() {
 
   document.querySelector("button#students-row").addEventListener("click", () => {
     browser.tabs
-      .query({ active: true, currentWindow: true })
+      .query({
+        active: true,
+        currentWindow: true
+      })
       .then(copyStudentsRow)
       .catch(reportError);
   });
   document.querySelector("button#students-column").addEventListener("click", () => {
     browser.tabs
-      .query({ active: true, currentWindow: true })
+      .query({
+        active: true,
+        currentWindow: true
+      })
       .then(copyStudentsColumn)
       .catch(reportError);
   });
   document.querySelector("button#teachers-row").addEventListener("click", () => {
     browser.tabs
-      .query({ active: true, currentWindow: true })
+      .query({
+        active: true,
+        currentWindow: true
+      })
       .then(copyTeachersRow)
       .catch(reportError);
   });
   document.querySelector("button#teachers-column").addEventListener("click", () => {
     browser.tabs
-      .query({ active: true, currentWindow: true })
+      .query({
+        active: true,
+        currentWindow: true
+      })
       .then(copyTeachersColumn)
       .catch(reportError);
   });
@@ -74,17 +86,30 @@ chrome.tabs.query({
   lastFocusedWindow: true
 }, tabs => {
   const url = tabs[0].url;
-  if (url.startsWith("https://intranet.cpnv.ch/classes/")) {
+  if (url.match(/https:\/\/intranet.cpnv.ch\/classes\/[^\/]+\/?$/) !== null) {
     notokelt.classList.add('hidden');
     okelt.classList.remove('hidden');
 
     browser.tabs
-      .executeScript({ file: "/content_scripts/copy.js" })
+      .executeScript({
+        file: "/content_scripts/copy.js"
+      })
       .then(listenForClicks)
       .catch(reportExecuteScriptError);
-
   } else {
     okelt.classList.add('hidden');
     notokelt.classList.remove('hidden');
+    const matches = url.match(/https?:\/\/(intranet.cpnv.ch\/classes\/[^\/]+)\/?.*$/);
+    if (matches !== null) {
+      const classeUrl = "https://" + matches[1];
+      const urlelt = document.querySelector("#urlelt");
+      urlelt.insertAdjacentText('beforebegin', ' (');
+      urlelt.insertAdjacentText('afterend', ')');
+      urlelt.textContent = 'ici';
+      urlelt.setAttribute("href", classeUrl);
+      urlelt.addEventListener('click', event => {
+        setTimeout(() => {window.close()}, 500);
+      });
+    }
   }
 });
