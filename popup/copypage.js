@@ -113,10 +113,11 @@ chrome.tabs.query({
       urlelt.insertAdjacentText('beforebegin', ' (');
       urlelt.insertAdjacentText('afterend', ')');
       urlelt.textContent = 'ici';
-      urlelt.setAttribute("href", classeUrl);
       urlelt.addEventListener('click', event => {
+        event.preventDefault();
+        browser.tabs.update({ url: classeUrl });
         setTimeout(() => {
-          window.close()
+          window.close();
         }, 500);
       });
     }
