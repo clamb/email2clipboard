@@ -5,65 +5,72 @@ function listenForClicks() {
     browser.tabs.sendMessage(tabs[0].id, {
       command: "copyStudentsRow"
     });
+    notifyDone();
   };
 
   const copyStudentsColumn = tabs => {
     browser.tabs.sendMessage(tabs[0].id, {
       command: "copyStudentsColumn"
     });
+    notifyDone();
   };
 
   const copyTeachersRow = tabs => {
     browser.tabs.sendMessage(tabs[0].id, {
       command: "copyTeachersRow"
     });
+    notifyDone();
   };
 
   const copyTeachersColumn = tabs => {
     browser.tabs.sendMessage(tabs[0].id, {
       command: "copyTeachersColumn"
     });
+    notifyDone();
   };
 
+  const notifyDone = () => {
+    browser.notifications.create({
+      type: "basic",
+      title: "Données copiées",
+      message: "Les données sont copiées dans le presse-papier. CTRL-V ou CMD-V pour les coller."
+    });
+    window.close();
+  }
+
   const reportError = error => {
+    browser.notifications.create({
+      type: "basic",
+      title: "Erreur interne",
+      message: "Il y eu une erreur: " + error
+    });
     console.error(`Ooops, une erreur est survenue: ${error}`);
   };
 
   document.querySelector("button#students-row").addEventListener("click", () => {
-    browser.tabs
-      .query({
-        active: true,
-        currentWindow: true
-      })
+    getCurrentTab()
       .then(copyStudentsRow)
       .catch(reportError);
   });
   document.querySelector("button#students-column").addEventListener("click", () => {
-    browser.tabs
-      .query({
-        active: true,
-        currentWindow: true
-      })
+    getCurrentTab()
       .then(copyStudentsColumn)
       .catch(reportError);
   });
   document.querySelector("button#teachers-row").addEventListener("click", () => {
-    browser.tabs
-      .query({
-        active: true,
-        currentWindow: true
-      })
+    getCurrentTab()
       .then(copyTeachersRow)
       .catch(reportError);
   });
   document.querySelector("button#teachers-column").addEventListener("click", () => {
-    browser.tabs
-      .query({
-        active: true,
-        currentWindow: true
-      })
+    getCurrentTab()
       .then(copyTeachersColumn)
       .catch(reportError);
+  });
+
+  const getCurrentTab = () => browser.tabs.query({
+    active: true,
+    currentWindow: true
   });
 }
 
@@ -108,7 +115,9 @@ chrome.tabs.query({
       urlelt.textContent = 'ici';
       urlelt.setAttribute("href", classeUrl);
       urlelt.addEventListener('click', event => {
-        setTimeout(() => {window.close()}, 500);
+        setTimeout(() => {
+          window.close()
+        }, 500);
       });
     }
   }
