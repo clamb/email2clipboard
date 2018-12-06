@@ -1,54 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-  <meta charset="utf-8">
-  <title>Email2Clipboard</title>
-  <link rel="stylesheet" href="copypage.css">
+	<meta charset="utf-8">
+	<title>Email2Clipboard</title>
+	<link rel="stylesheet" href="copypage.css">
 </head>
 
 <body>
 
-  <!-- TODO: https://github.com/mdn/webextensions-examples/blob/master/latest-download/popup/latest_download.html -->
+	<!-- TODO: https://github.com/mdn/webextensions-examples/blob/master/latest-download/popup/latest_download.html -->
 
-  <div id="ok" class="hidden">
-    <p>
-      Choisissez les adresses que vous désirez copier dans le presse-papier.
-    </p>
-    <div id="popup-content">
-      <div class="control">
-        <div>Elèves</div>
-        <div>
-          <button id="students-row">Ligne</button>
-          <button id="students-column">Colonne</button>
-        </div>
-      </div>
-      <div class="control">
-        <div>Enseignants</div>
-        <div>
-          <button id="teachers-row">Ligne</button>
-          <button id="teachers-column">Colonne</button>
-        </div>
-      </div>
-    </div>
-    <div id="error-content" class="hidden">
-      <p>Ooops, il y a une erreur!</p>
-    </div>
-  </div>
-  <div id="notok" class="hidden">
-    Cette extension ne fonctionne que sur la vue classes de l'Intranet<a id="urlelt" href="#"></a>.
-  </div>
-  <hr>
-  <div id="version"></div>
-  <div class="license">
-    Icons made by
-    <a href="http://www.freepik.com" title="Freepik">Freepik</a>
-    from
-    <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-    is licensed by
-    <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-  </div>
-  <script src="copypage.js" charset="utf-8"></script>
+	<div id="ok" class="hidden">
+		<p>
+			Choisissez les adresses que vous désirez copier dans le presse-papier.
+		</p>
+		<div id="popup-content">
+			<div id="buttons">
+				<div class="control">
+					<div>
+						<button id="students">Élèves</button>
+					</div>
+				</div>
+				<div class="control">
+					<div>
+						<button id="teachers">Enseignants</button>
+					</div>
+				</div>
+			</div>
+			<div class="choices">
+				<div>
+					<input type="checkbox" name="cbFullname" id="cbFullname">
+					<label for="cbFullname">Noms complets</label>
+				</div>
+				<div>
+					<input type="checkbox" name="cbLastname" id="cbLastname" checked>
+					<label for="cbLastname">Noms</label>
+				</div>
+				<div>
+					<input type="checkbox" name="cbFirstname" id="cbFirstname" checked>
+					<label for="cbFirstname">Prénoms</label>
+				</div>
+				<div>
+					<input type="checkbox" name="cbEmail" id="cbEmail" checked>
+					<label for="cbEmail">Courriels</label>
+				</div>
+				<div>
+					<input type="checkbox" name="cbAcronym" id="cbAcronym">
+					<label for="cbAcronym">Acronymes</label>
+				</div>
+				<div>
+					<div>
+						Séparateur de champs:
+					</div>
+					<span>
+						<input type="radio" name="separator" id="cr" value="cr">
+						<label for="cr">&lt;CR&gt;</label>
+					</span>
+					<span>
+						<input type="radio" name="separator" id="semicolon" value="semicolon" checked>
+						<label for="semicolon">;</label>
+					</span>
+					<span>
+						<input type="radio" name="separator" id="comma" value="comma">
+						<label for="comma">,</label>
+					</span>
+					<span>
+						<input type="radio" name="separator" id="space" value="space">
+						<label for="space">espace</label>
+					</span>
+				</div>
+				<div>
+					<div>
+						Séparateur d'enregistrements:
+					</div>
+					<span>
+						<input type="radio" name="rseparator" id="rcr" value="cr" checked>
+						<label for="rcr">&lt;CR&gt;</label>
+					</span>
+					<span>
+						<input type="radio" name="rseparator" id="rsemicolon" value="semicolon">
+						<label for="rsemicolon">;</label>
+					</span>
+					<span>
+						<input type="radio" name="rseparator" id="rcomma" value="comma">
+						<label for="rcomma">,</label>
+					</span>
+					<span>
+						<input type="radio" name="rseparator" id="rspace" value="space">
+						<label for="rspace">espace</label>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div id="error-content" class="hidden">
+			<p>Ooops, il y a une erreur!</p>
+		</div>
+	</div>
+	<div id="notok" class="hidden">
+		Cette extension ne fonctionne que sur la vue classes de l'Intranet
+		<a id="urlelt" href="#!"> </a>.
+	</div>
+	<hr>
+	<div id="version"></div>
+	<div class="license">
+		Icons made by
+		<a href="http://www.freepik.com" title="Freepik">Freepik</a>
+		from
+		<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+		is licensed by
+		<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+	</div>
+	<script src="copypage.js" charset="utf-8">
+
+</script>
 </body>
 
 </html>

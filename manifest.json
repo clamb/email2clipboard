@@ -1,15 +1,15 @@
 {
   "manifest_version": 2,
   "name": "Email2Clipoard",
-  "version": "1.5",
+  "version": "1.6",
 
-  "description": "Copie les emails des élèves dans le presse-papier",
+  "description": "Copie les emails des élèves ou des enseignants dans le presse-papier",
 
   "icons": {
     "48": "icons/envelope.svg"
   },
 
-  "permissions": ["activeTab", "clipboardWrite", "tabs", "notifications"],
+  "permissions": ["activeTab", "clipboardWrite", "tabs", "notifications", "storage"],
 
   "page_action": {
     "default_icon": "icons/envelope.svg",

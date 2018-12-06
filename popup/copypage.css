@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -21,10 +23,10 @@ html {
 
 body {
   padding: 5px;
-  width: 200px;
+  width: 250px;
 }
 
-#popup-content {
+#buttons {
   display: grid;
   grid-gap: 0.2em;
   grid-template-columns: 50% 50%;
@@ -39,4 +41,8 @@ body {
 
 hr {
   width: 100%;
+}
+
+#cbJoin {
+  font-family: monospace;
 }
