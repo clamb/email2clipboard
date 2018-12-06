@@ -9,7 +9,7 @@
     "48": "icons/envelope.svg"
   },
 
-  "permissions": ["activeTab", "clipboardWrite", "tabs", "notifications", "storage"],
+  "permissions": ["activeTab", "clipboardWrite", "tabs", "notifications"],
 
   "page_action": {
     "default_icon": "icons/envelope.svg",
